@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nom-du-deployment
+  namespace: nom-du-namespace
+spec:
+  replicas: nombre-de-replicas
+  selector:
+    matchLabels:
+      name: nom-de-l'application
+  template:
+    metadata:
+      labels:
+        name: nom-de-l'application
+    spec:
+      containers:
+      - name: nom-du-conteneur
+        image: image:tag
+        env:
+        - name: NOM_VARIABLE
+          value: "valeur"
+      restartPolicy: Always

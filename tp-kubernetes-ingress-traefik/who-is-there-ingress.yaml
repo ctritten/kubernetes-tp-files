@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: wit
+ namespace: default
+ annotations:
+   kubernetes.io/ingress.class: traefik
+spec:
+ rules:
+ - host: "wit.example.tld"
+   http:
+     paths:
+     - backend:
+         serviceName: who-is-there
+         servicePort: 8080
