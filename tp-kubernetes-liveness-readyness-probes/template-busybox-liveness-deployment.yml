@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: liveness
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: liveness
+  template:
+    metadata:
+      labels:
+        name: liveness
+    spec:
+      containers:
+      - name: liveness
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - |
+          touch /alive ; sleep 3600 ;
+        livenessProbe:
+          ...
+      restartPolicy: Always

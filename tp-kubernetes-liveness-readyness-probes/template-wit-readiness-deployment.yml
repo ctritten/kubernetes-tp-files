@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readiness
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: readiness
+  template:
+    metadata:
+      labels:
+        name: readiness
+    spec:
+      containers:
+      - name: readiness
+        image: xian310/who-is-there:1
+        readinessProbe:
+          ...
+      restartPolicy: Always
