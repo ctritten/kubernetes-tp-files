@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test-memory-quota
+spec:
+  replicas: 15
+  selector:
+    matchLabels:
+      app: test-memory-quota
+  template:
+    metadata:
+      labels:
+        app: test-memory-quota
+    spec:
+      containers:
+      - image: xian310/who-is-there:5
+        name: test-memory-quota
+        resources:
+          requests:
+            memory: "256Mi"
+      restartPolicy: Always

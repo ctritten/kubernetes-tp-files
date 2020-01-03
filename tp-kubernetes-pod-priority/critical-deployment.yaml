@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: critical
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: critical
+  template:
+    metadata:
+      labels:
+        app: critical
+    spec:
+      containers:
+      - image: xian310/who-is-there:5
+        imagePullPolicy: IfNotPresent
+        name: critical
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+      restartPolicy: Always
+      priorityClassName: my-critical-apps

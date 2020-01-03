@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
  name: traefik-ingress-controller
- namespace: traefik
+ namespace: kube-system
  labels:
    k8s-app: traefik-ingress-lb
    kubernetes.io/cluster-service: "true"
@@ -13,14 +13,14 @@ spec:
        k8s-app: traefik-ingress-lb
        name: traefik-ingress-lb
    spec:
-     hostNetwork: true # workaround
+     hostNetwork: true # Allows Traefik pods to listen on host's ports 80 and 443
      serviceAccountName: traefik-ingress-controller
      terminationGracePeriodSeconds: 60
      tolerations:
      - key: node-role.kubernetes.io/master
        effect: NoSchedule
      containers:
-     - image: traefik:tetedemoine
+     - image: traefik:maroilles
        name: traefik-ingress-lb
        imagePullPolicy: Always
        volumeMounts:

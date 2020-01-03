@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  name: miam-dodo
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /miam
+        backend:
+          serviceName: miam
+          servicePort: 80
+      - path: /dodo
+        backend:
+          serviceName: dodo
+          servicePort: 80

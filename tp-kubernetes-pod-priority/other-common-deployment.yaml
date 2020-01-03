@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: other-common
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: other-common
+  template:
+    metadata:
+      labels:
+        app: other-common
+    spec:
+      containers:
+      - image: xian310/who-is-there:5
+        imagePullPolicy: IfNotPresent
+        name: other-common
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+      restartPolicy: Always

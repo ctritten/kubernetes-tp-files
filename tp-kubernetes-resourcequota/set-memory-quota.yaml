@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: memory-quota
+spec:
+  hard:
+    memory: "600Mi"

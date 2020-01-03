@@ -2,9 +2,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: traefik-conf
-  namespace: traefik
+  namespace: kube-system
 data:
   traefik.toml: |-
     defaultEntryPoints = ["http","https"]
-    [web]
+    [api]
     address = ":8080"
+
+    [metrics]
+      [metrics.prometheus]
+        entryPoint = "traefik"
+        buckets = [0.1,0.3,1.2,5.0]
